@@ -3,7 +3,6 @@ import dayjs from "dayjs";
 const LivePreview = ({ order, total }) => {
 
     const { name, email, base, toppings, specialRequest, quantity, deliveryDate } = order;
-
     return (
         <div className="col-md-6 position-sticky" style={{ top: '2rem' }}>
             <h2 className="mb-4">Live Preview</h2>

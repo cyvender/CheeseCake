@@ -16,7 +16,6 @@ const ViewOrders = () => {
         getOrders();
 
     }, [])
-    console.log(orders)
 
     return (
         <div className="container" style={{ marginTop: '80px' }}>

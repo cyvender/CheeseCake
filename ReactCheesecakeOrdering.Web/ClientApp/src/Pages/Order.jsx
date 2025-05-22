@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import toppingNames from "../components/ToppingNames";
 import LivePreview from "../components/LivePreview";
@@ -14,7 +14,6 @@ const Order = () => {
         quantity: 1,
         deliveryDate: ''
     });
-    const [total, setTotal] = useState(0);
 
     const onOrderChange = (e) => {
         const copy = { ...order };
@@ -32,30 +31,8 @@ const Order = () => {
         setOrder(copy);
     }
 
-    useEffect(() => {
-        if (order.base !== '') {
-            setTotal((49.99 + (3.95 * order.toppings.length)) * quantity);
-        }
-        else {
-            setTotal(0)
-        }
-        console.log(order.base)
-    }, [order.toppings.length, order.base, order.quantity])
-
-    const convertToString = () => {
-        let toppingString = '';
-        order.toppings.forEach((t, index) => {
-            toppingString += ` ${t}`;
-            if (index !== order.toppings.length - 1) {
-                toppingString += ','
-            }
-        });
-
-        return toppingString;
-    }
-
     const onSubmitClick = async () => {
-        await axios.post('/api/cheesecake/addorder', { ...order, total: total, toppings: convertToString() })
+        await axios.post('/api/cheesecake/addorder', { ...order, total: total, toppings: order.toppings.join(', ')})
         const clearAll = async () => {
             setOrder({
                 name: '',
@@ -72,6 +49,7 @@ const Order = () => {
 
     const { name, email, base, toppings, specialRequest, quantity, deliveryDate } = order;
     const fieldsFilled = name === '' || email === '' || base === '' || deliveryDate === '';
+    let total = base !== '' ? 49.99 * quantity + 3.95 * toppings.length * quantity : 0;
 
     return (
         <div className="container" style={{ marginTop: '80px' }}>
