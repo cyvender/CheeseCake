@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import dayjs from "dayjs";
 
 const OrderDetails = () => {
 
@@ -19,7 +20,7 @@ const OrderDetails = () => {
         getOrder();
 
     }, [])
-    console.log(order)
+
     const {name, email, base, toppings, specialRequest, quantity, deliveryDate, total } = order;
 
     return (
@@ -33,7 +34,7 @@ const OrderDetails = () => {
                         <p className="card-text fs-5">{toppings}</p>
                         <p className="card-text fs-5">{specialRequest}</p>
                         <p className="card-text fs-5">{quantity}</p>
-                        <p className="card-text fs-5">{deliveryDate}</p>
+                        <p className="card-text fs-5">{dayjs(deliveryDate).format("MM/DD/YYYY")}</p>
                         <p className="card-text fs-5">${total}</p>
                     </div>
                     <Link to='/vieworders'>

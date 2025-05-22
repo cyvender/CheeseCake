@@ -1,0 +1,19 @@
+const toppingNames = [
+    'Chocolate Chips',
+    'Caramel Drizzle',
+    'Whipped Cream',
+    'Pecans',
+    'Almonds',
+    'Toasted Coconut',
+    'Graham Cracker Crumble',
+    'Cookie Dough',
+    'Mint Chocolate Chips',
+    'Caramelized Bananas',
+    'Rainbow Sprinkles',
+    'Powdered Sugar',
+    'White Chocolate Shavings',
+    'Peanut Butter Drizzle',
+    'Dark Chocolate Drizzle'
+]
+
+export default toppingNames;
